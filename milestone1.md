@@ -50,4 +50,7 @@ The important idea is that we focus on the concept of making a trip to public pl
 It wouldn't particularly focus on wayfinding; it would be a beneficial addition to a trip to aid learning and make
 the educator's typically stressful job at a field trip much easier to handle.
 ## Storyboards and paper prototypes
-(Links go here)
+### Storyboard 1
+### Storyboard 2
+### Prototype 1
+### Prototype 2
