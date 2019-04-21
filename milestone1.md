@@ -34,7 +34,7 @@ Our team members do not fit into the target populations because we are all:
 ### APIs
 For now, we will be utilizing on the Harvard Art Museum API (https://github.com/harvardartmuseums/api-docs).
 
-We may add some more different museum APIs to include other museums as well as we progress throughout the projec.
+We may add some more different museum APIs to include other museus as we progress throughout the project.
 ### Additional ideas
 1. Could possibly rescope the project to include college art students who actually need specific
 art pieces to complete their assignment. Educational aid for college art students.
