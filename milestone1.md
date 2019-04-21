@@ -12,8 +12,6 @@ States in an application that can be used by educators to plan field trips.
 
 The data can be used to help educators plan field trips by art theme (Renaissance
 era paintings, Native american art, etc.), by event date, and more.
-https://github.com/harvardartmuseums/api-docs
-
 
 ### Target user population
 Educators (teachers and professors) in any institution (elementary school,
