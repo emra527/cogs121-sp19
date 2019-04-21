@@ -51,6 +51,8 @@ It wouldn't particularly focus on wayfinding; it would be a beneficial addition 
 the educator's typically stressful job at a field trip much easier to handle.
 ## Storyboards and paper prototypes
 ### Storyboard 1
+![Image of Storyboard1](Storyboards/Storyboard1.png)
+
 ### Storyboard 2
 ### Prototype 1
 ### Prototype 2
