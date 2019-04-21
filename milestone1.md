@@ -28,7 +28,7 @@ Primarily middle/high school students attending museum field trips.
 
 Our team members do not fit into the target populations because we are all:
 1. Not middle/high students not going on field trips.
-2. Not of us are currently studying art or have an interested in art related topics.
+2. Not currently studying art or have an interested in art related topics.
 3. Not educators planning field trips for students.
 ### Real-world data sources
 ### APIs
