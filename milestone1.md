@@ -55,4 +55,6 @@ the educator's typically stressful job at a field trip much easier to handle.
 
 ### Storyboard 2
 ### Prototype 1
+![Image of Prototype1](Prototypes/P1.png)
 ### Prototype 2
+![Image of Prototype2](Prototypes/P2.png)
