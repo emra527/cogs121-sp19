@@ -1,0 +1,42 @@
+/* home/login */
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.title{
+	text-align: center;
+	font-size:40px;
+	font-weight:800;
+	padding-top:150px;
+}
+
+.login{
+	padding:20px 40px 0 40px;
+}
+
+
+/* registration */
+.title2{
+	text-align: center;
+	font-size:40px;
+	font-weight:800;
+	padding-top:50px;
+}
+
+.onboard-info{
+	padding:50px;
+}
+
+.onboard-info .btn{
+	text-align:center;
+	padding: 20px 0 20px 0;
+	background-color:#c4c4c4;
+	border-radius:100px;
+}
+
+.next-button{
+	text-align:right;
+	padding: 10px 0 10px 0;
+	margin-right: 20px;
+}
