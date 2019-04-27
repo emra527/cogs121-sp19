@@ -7,8 +7,8 @@ Tianyu Ma
 Kenny Cheng
 Andrew Auh
 ## Differences from Milestone 1 proposal
-We will be using PetsApp v3 as a basis for our project.
-It is found at: https://github.com/pgbovine/COGS121/tree/master/petsapp-v3
+We will be using PetsApp v2 as a basis for our project.
+It is found at: https://github.com/pgbovine/COGS121/tree/master/petsapp-v2
 
 Based on our TA feedback, we will be continuing with our original idea of the app, and basing it off of both Prototypes 1 & 2.
 ## Screenshots of UI
