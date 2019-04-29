@@ -1,0 +1,23 @@
+#joinclassh2 {
+    position: absolute;
+	width: 357px;
+	height: 52px;
+	left: 30px;
+	top: 252px;
+  }
+
+  #joinclassp {
+    position: absolute;
+	width: 345px;
+	height: 52px;
+	left: 36px;
+	top: 296px;
+  }
+
+  #joinnextbutton {
+    position: absolute;
+    width: 125px;
+    height: 50px;
+    left: 275px;
+    top: 550px;
+  }

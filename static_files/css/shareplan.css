@@ -1,0 +1,49 @@
+#shareh2 {
+    position: absolute;
+    width: 357px;
+    height: 52px;
+    left: 29px;
+    top: 234px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 33px;
+    text-align: center;
+}
+
+#sharep {
+    position: absolute;
+    width: 345px;
+    height: 52px;
+    left: 35px;
+    top: 278px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    
+    color: #000000;
+}
+
+#copybutton {
+    position: absolute;
+    width: 261px;
+    height: 52px;
+    left: 84px;
+    top: 431px;
+    font-size: 20px;
+}
+
+#emailbutton {
+    position: absolute;
+    width: 261px;
+    height: 52px;
+    left: 84px;
+    top: 501px;
+    font-size: 20px;
+    
+}

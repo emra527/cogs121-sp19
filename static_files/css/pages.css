@@ -1,0 +1,68 @@
+body {
+    position: relative;
+    width: 414px;
+    height: 736px;
+
+    background: #FFFFFF;
+}
+
+/* Rectangle */
+.rectangleheader {
+    position: absolute;
+    width: 414px;
+    height: 127px;
+    left: 0px;
+    top: 0px;
+    
+    background: #C4C4C4;
+}
+
+.rectangleheader h1 {
+    position: absolute;
+    width: 355px;
+    height: 66px;
+    left: 30px;
+    top: 39px;
+    
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+    text-transform: uppercase;
+    
+    color: #FFFFFF;
+}
+
+/* Underlined Input */
+input {
+    display: inline-block;
+    margin: 1em auto;
+    border: none;
+    padding: 0;
+    width: 8.4ch;
+    background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.4ch) 0 100%/ 8ch 2px no-repeat;
+    font: 5ch droid sans mono, consolas, monospace;
+    letter-spacing: 0.4ch;
+  }
+  input:focus {
+    outline: none;
+    color: dodgerblue;
+  }
+  
+  a {
+    padding-top: 1%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 27px;
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+
+  .nextbutton {
+    text-align: center;
+    background: #C4C4C4;
+    border-radius: 50px;
+  }
