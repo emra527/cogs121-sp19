@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  margin:10px;
 }
 
 .title{
@@ -72,3 +73,40 @@ margin-right:25px;
 	padding:20px 20px 20px 40px;
 	border-radius:5px;
 }
+
+.exhibit-entry{
+	background-color: white;
+	border-style:solid;
+	border-width:1px;
+	padding:10px 10px 10px 30px;
+	border-radius:5px;
+	margin:0px 25px -5px 25px;
+}
+
+.listmap{
+	text-align:center;
+	margin:10px;
+}
+
+.listview{
+	display:inline-block;
+}
+
+.mapview{
+	display:inline-block;
+}
+
+.explore-button{
+	float:right;
+	margin:-35px 0 0 0 ;
+	padding:-10px;
+}
+
+.title3{
+	text-align: left;
+	font-size:36px;
+	font-weight:800;
+	padding-top:10px;
+	margin:25px 0 10px 25px;
+}
+
