@@ -6,10 +6,10 @@ const db = new sqlite3.Database('passwords.db');
 //  which we don't want)
 db.serialize(() => {
   // create a new database table:
-  db.run("CREATE TABLE users_to_passwords (name TEXT, password TEXT)");
+  db.run("CREATE TABLE users_to_passwords (name TEXT, password TEXT, SorT TEXT, plan TEXT)");
 
   // insert 3 rows of data:
-  db.run("INSERT INTO users_to_passwords VALUES ('tim', '007')");
+  db.run("INSERT INTO users_to_passwords VALUES ('tim', '007', '1', '0')");
   //db.run("INSERT INTO users_to_pets VALUES ('John', 'student', 'dog.jpg')");
   //db.run("INSERT INTO users_to_pets VALUES ('Carol', 'engineer', 'bear.jpg')");
 
@@ -17,7 +17,7 @@ db.serialize(() => {
 
   // print them out to confirm their contents:
   db.each("SELECT name, password FROM users_to_passwords", (err, row) => {
-      console.log(row.name + ": " + row.password);
+      console.log(row.name + ": " + row.password+ ": " + row.SorT+": " + row.plan);
   });
 });
 

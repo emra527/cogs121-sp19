@@ -32,7 +32,15 @@
 	        if (data.name && data.password) {
 						if(data.password==$('#exampleInputPassword1').val()){
 							$('#exist').html('correct!!!');
-							window.location.href="register.html";
+							if(data.SorT=='0'){
+								window.location.href="register.html";
+							}
+							if(data.SorT=='1'){
+								window.location.href="educatorplan.html";
+							}
+							if(data.SorT=='2'){
+								window.location.href="joinclass.html";
+							}
 						}
 						else{
 							$('#exist').html('Error: password incorrect!');
@@ -92,6 +100,8 @@
 				      data: {
 				              name: $('#exampleInputEmail1').val(),
 				              password: $('#exampleInputPassword1').val(),
+											SorT: '0',
+											plan: '0',
 				            },
 				      success: (data) => {
 								console.log('success!');

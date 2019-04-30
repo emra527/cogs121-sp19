@@ -33,11 +33,13 @@ app.post('/users', (req, res) => {
   console.log(req.body);
 
   db.run(
-    'INSERT INTO users_to_passwords VALUES ($name, $password)',
+    'INSERT INTO users_to_passwords VALUES ($name, $password, $SorT, $plan)',
     // parameters to SQL query:
     {
       $name: req.body.name,
       $password: req.body.password,
+      $SorT: req.body.SorT,
+      $plan: req.body.plan,
     },
     // callback function to run when the query finishes:
     (err) => {
