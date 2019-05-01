@@ -49,7 +49,7 @@ app.post('/users', (req, res) => {
         res.send({message: 'successfully run app.post(/users)'});
       }
     }
-  );
+    );
 });
 
 
@@ -78,7 +78,52 @@ app.get('/users/:userid', (req, res) => {
         res.send({}); // failed, so return an empty object instead of undefined
       }
     }
-  );
+    );
+});
+
+
+const fakeGalleries = {
+  'Dutch':
+  {
+    "objectcount": 27,
+    "floor": 2,
+    "name": "European Art, 17th–19th century",
+    "theme": "Seventeenth–Century Dutch and Flemish Art",
+    "keywords": "Dutch"
+  },
+  'Renaissance':
+  {
+    "objectcount": 35,
+    "floor": 2,
+    "name": "European Art, 13th–16th century",
+    "theme": "The Renaissance",
+    "keywords":"Renaissance"
+  }
+};
+
+
+// GET a list of all galleries
+//
+// To test, open this URL in your browser:
+//   http://localhost:3000/users
+app.get('/galleries', (req, res) => {
+  const allGalleries = Object.keys(fakeGalleries); // returns a list of object keys
+  console.log('fakeGalleries is:', fakeGalleries);
+  res.send(allGalleries);
+});
+
+
+// GET gallery data
+//
+app.get('/galleries/:galleryid', (req, res) => {
+  const galleryToSearch = req.params.galleryid; // matches ':galleryid' above
+  const val = fakeGalleries[galleryToSearch];
+  console.log(galleryToSearch, '->', val); // for debugging
+  if (val) {
+    res.send(val);
+  } else {
+    res.send({}); // failed, so return an empty object instead of undefined
+  }
 });
 
 
