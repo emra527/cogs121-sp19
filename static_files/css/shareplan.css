@@ -47,3 +47,12 @@
     font-size: 20px;
     
 }
+
+#finish-button {
+    position: absolute;
+    width: 125px;
+    height: 52px;
+    left: 250px;
+    top: 670px;
+    font-size: 20px;
+}
