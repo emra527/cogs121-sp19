@@ -13,15 +13,13 @@ It is found at: https://github.com/pgbovine/COGS121/tree/master/petsapp-v2
 Based on our TA feedback, we will be continuing with our original idea of the app, and basing it off of both Prototypes 1 & 2.
 ## Screenshots of UI
 ![Image of UI1](UI_Screenshots/UI1.png)
-![Image of UI2](UI_Screenshots/UI2.png)
-
-"Educator" Path
+![Image of UI2](UI_Screenshots/UI2.png)  
+"Educator" Path  
 ![Image of UI3](UI_Screenshots/UI3.png)
 ![Image of UI4](UI_Screenshots/UI4.png)
 ![Image of UI5](UI_Screenshots/UI5.png)
-![Image of UI6](UI_Screenshots/UI6.png)
-
-"Student" Path
+![Image of UI6](UI_Screenshots/UI6.png)  
+"Student" Path  
 ![Image of UI7](UI_Screenshots/UI7.png)
 ![Image of UI8](UI_Screenshots/UI8.png)
 
