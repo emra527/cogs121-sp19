@@ -12,8 +12,17 @@ It is found at: https://github.com/pgbovine/COGS121/tree/master/petsapp-v2
 
 Based on our TA feedback, we will be continuing with our original idea of the app, and basing it off of both Prototypes 1 & 2.
 ## Screenshots of UI
-Screenshots
+![Image of UI1](UI_Screenshots/UI1.png)
+![Image of UI2](UI_Screenshots/UI2.png)
+![Image of UI3](UI_Screenshots/UI3.png)
+![Image of UI4](UI_Screenshots/UI4.png)
+![Image of UI5](UI_Screenshots/UI5.png)
+![Image of UI6](UI_Screenshots/UI6.png)
+![Image of UI7](UI_Screenshots/UI7.png)
+![Image of UI8](UI_Screenshots/UI8.png)
+
 ### How the screenshots differ from Milestone 1 proposal
-Placeholder
+Our screenshots are fairly direct adaptations of both of our paper prototypes. While we maintained the general flow and many UI elements from our second prototype, we also included some of the features present in our first prototype -- namely the map component which seemed like a useful visual tool for our users. As a result, our most recent UI contains components of both of our initial prototypes. 
+
 ## Plan of data sets
 We will be sticking to our original idea from Milestone 1, and using the Harvard Art Museum API: https://github.com/harvardartmuseums/api-docs.
