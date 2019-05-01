@@ -13,6 +13,7 @@
   // jQuery convention for running when the document has been fully loaded:
   $(document).ready(() => {
     console.log("hi");
+    $('#searchresults').hide();
     $('#searchButton').click(() => {
       const requestURL = 'galleries/' + $('#searchQuery').val();
       console.log(requestURL);
@@ -28,6 +29,9 @@
         if (data.keywords) {
           $('#featured-exhibits').html('Search results:');
           $('#featuredlist').hide();
+          $('#searchresults').show();
+          $('#search-title').html(data.name);
+          $('#search-description').html(data.theme);
 
         } else {
           $('#featured-exhibits').html('No results found!');
@@ -77,6 +81,14 @@
       <input class="form-check-input" type="checkbox" value="" id="check4">
       <label class="form-check-label" for="check2">Exhibit 4</label>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+  </div>
+
+  <div class="form-check" id="searchresults">
+    <div class="exhibit-checks">
+      <input class="form-check-input" type="checkbox" value="" id="check4">
+      <label class="form-check-label" for="check2" id="search-title"></label>
+      <p id="search-description"></p>
     </div>
   </div>
 
