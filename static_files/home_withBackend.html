@@ -32,6 +32,18 @@
 	        if (data.name && data.password) {
 						if(data.password==$('#exampleInputPassword1').val()){
 							$('#exist').html('correct!!!');
+							$.ajax({
+					      // all URLs are relative to http://localhost:3000/
+					      url: 'current',
+					      type: 'POST', // <-- this is POST, not GET
+					      data: {
+					              name: $('#exampleInputEmail1').val(),
+					            },
+					      success: (data) => {
+									console.log('success!');
+					        $('#exist').html('Success!');
+					      }
+					    });
 							if(data.SorT=='0'){
 								window.location.href="register.html";
 							}

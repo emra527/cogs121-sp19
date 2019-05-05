@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 
-
+// bcrypt
 // use this library to interface with SQLite databases: https://github.com/mapbox/node-sqlite3
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('passwords.db');
@@ -20,6 +20,14 @@ app.get('/users', (req, res) => {
   });
 });
 
+app.get('/current', (req, res) => {
+  // db.all() fetches all results from an SQL query into the 'rows' variable:
+  db.all('SELECT * FROM current_user', (err, rows) => {
+    res.send(rows[0]);
+       // failed, so return an empty object instead of undefined
+
+  });
+});
 
 // POST data about a user to insert into the database
 // (note that this will insert duplicate entries!)
@@ -52,6 +60,46 @@ app.post('/users', (req, res) => {
     );
 });
 
+app.post('/current', (req, res) => {
+  console.log(req.body);
+
+  db.run(
+    'UPDATE current_user SET username = $name WHERE identity = "example"',
+    // parameters to SQL query:
+    {
+      $name: req.body.name,
+    },
+    // callback function to run when the query finishes:
+    (err) => {
+      if (err) {
+        res.send({message: 'error in app.post(/users)'});
+      } else {
+        res.send({message: 'successfully run app.post(/users)'});
+      }
+    }
+    );
+});
+
+app.post('/SorT', (req, res) => {
+  console.log(req.body);
+
+  db.run(
+    'UPDATE users_to_passwords SET SorT = $SorT WHERE name = $name',
+    // parameters to SQL query:
+    {
+      $name: req.body.name,
+      $SorT: req.body.SorT,
+    },
+    // callback function to run when the query finishes:
+    (err) => {
+      if (err) {
+        res.send({message: 'error in app.post(/users)'});
+      } else {
+        res.send({message: 'successfully run app.post(/users)'});
+      }
+    }
+    );
+});
 
 // GET profile data for a user
 //

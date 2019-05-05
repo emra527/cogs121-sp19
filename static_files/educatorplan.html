@@ -13,6 +13,22 @@
   // jQuery convention for running when the document has been fully loaded:
   $(document).ready(() => {
     console.log("hi");
+		$.ajax({
+			// all URLs are relative to http://localhost:3000/
+			url: 'current',
+			type: 'GET',
+			dataType : 'json', // this URL returns data in JSON format
+			success: (data) => {
+				console.log('You received some data!', data);
+
+				if (data.identity && data.username) {
+					$('#status').html('You have logged in as '+ data.username);
+					tempuser = data.username;
+				} else {
+					$('#status').html('Error: user account does not exist!');
+				}
+			},
+		});
     $('#searchresults').hide();
     $('#searchButton').click(() => {
       const requestURL = 'galleries/' + $('#searchQuery').val();
@@ -51,7 +67,7 @@
 </head>
 
 <body>
-
+	<div id="status">current user</div>
   <h1 class="title2">Step 2: Start a Plan</h1>
   <br>
   <input type="text" placeholder="Search the museum" aria-label="Search" id="searchQuery">
