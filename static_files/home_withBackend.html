@@ -32,7 +32,7 @@
 	        if (data.name && data.password) {
 						if(data.password==$('#exampleInputPassword1').val()){
 							$('#exist').html('correct!!!');
-							$.ajax({
+							/*$.ajax({
 					      // all URLs are relative to http://localhost:3000/
 					      url: 'current',
 					      type: 'POST', // <-- this is POST, not GET
@@ -43,7 +43,9 @@
 									console.log('success!');
 					        $('#exist').html('Success!');
 					      }
-					    });
+					    });*/
+							window.localStorage.setItem('username',data.name);
+							window.localStorage.setItem('logInStatus','1');
 							if(data.SorT=='0'){
 								window.location.href="register.html";
 							}

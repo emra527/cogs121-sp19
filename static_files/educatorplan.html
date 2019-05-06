@@ -12,8 +12,12 @@
   <script type="text/javascript">
   // jQuery convention for running when the document has been fully loaded:
   $(document).ready(() => {
-    console.log("hi");
-		$.ajax({
+    console.log("redirecting");
+		if(window.localStorage.getItem('logInStatus')){
+		}else{
+			window.location.href="home_withBackend.html";
+		}
+		/*$.ajax({
 			// all URLs are relative to http://localhost:3000/
 			url: 'current',
 			type: 'GET',
@@ -28,7 +32,14 @@
 					$('#status').html('Error: user account does not exist!');
 				}
 			},
+		});*/
+		const tempuser = window.localStorage.getItem('username');
+		console.log(tempuser);
+		$('#logOutButton').click((event) => {
+			window.localStorage.clear();
+			window.location.href="home_withBackend.html";
 		});
+		$('#status').html('You have logged in as '+ tempuser);
     $('#searchresults').hide();
     $('#searchButton').click(() => {
       const requestURL = 'galleries/' + $('#searchQuery').val();
@@ -68,6 +79,7 @@
 
 <body>
 	<div id="status">current user</div>
+	<button id = "logOutButton" class="btn btn-primary">Log out</button>
   <h1 class="title2">Step 2: Start a Plan</h1>
   <br>
   <input type="text" placeholder="Search the museum" aria-label="Search" id="searchQuery">

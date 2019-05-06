@@ -13,8 +13,16 @@
 	// jQuery convention for running when the document has been fully loaded:
 	$(document).ready(() => {
 		console.log('page ready');
-		let tempuser = '';
-		$.ajax({
+		if(window.localStorage.getItem('logInStatus')){
+		}else{
+			window.location.href="home_withBackend.html";
+		}
+		//const testname = window.localStorage.getItem('username');
+		//console.log(testname);
+		const tempuser = window.localStorage.getItem('username');;
+		console.log(tempuser);
+		$('#status').html('You have logged in as '+ tempuser);
+		/*$.ajax({
 			// all URLs are relative to http://localhost:3000/
 			url: 'current',
 			type: 'GET',
@@ -29,7 +37,7 @@
 					$('#status').html('Error: user account does not exist!');
 				}
 			},
-		});
+		});*/
 		$('#teacherButton').click((event) => {
 			$.ajax({
 				// all URLs are relative to http://localhost:3000/
@@ -61,6 +69,10 @@
 				}
 			});
 		});
+		$('#logOutButton').click((event) => {
+			window.localStorage.clear();
+			window.location.href="home_withBackend.html";
+		});
 
 
 
@@ -75,7 +87,9 @@
 </head>
 
 <body>
-<div id="status">current user</div>
+
+<div id="status">you have logged in as $tempuser</div>
+<button id = "logOutButton" class="btn btn-primary">Log out</button>
 
 <h1 class="title2">Step 1: Getting Started</h1>
 
