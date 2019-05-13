@@ -12,7 +12,11 @@ body {
 }
 
 .login{
-	padding:20px 40px 0 40px;
+	padding:20px 40px 0 0px;
+}
+
+#checkbutton{
+	margin-left:25px;
 }
 
 
@@ -46,7 +50,15 @@ float:right;
 	padding: 10px 0 10px 0;
 	margin-left: 20px;
 float:left;
+}
 
+#searchQuery{
+	margin-left:30px;
+	margin-right:-25px;
+}
+
+#searchButton{
+	margin-right:30px;
 }
 
 
