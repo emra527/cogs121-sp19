@@ -19,6 +19,15 @@ body {
 	margin-left:25px;
 }
 
+#logOutButton{
+	float:right;
+}
+
+#status{
+	text-align:right;
+	display:block;
+}
+
 
 /* registration */
 .title2{
@@ -35,7 +44,7 @@ body {
 .onboard-info .btn{
 	text-align:center;
 	padding: 20px 0 20px 0;
-	background-color:#c4c4c4;
+	
 	border-radius:100px;
 }
 
@@ -63,9 +72,9 @@ float:left;
 
 
 /* start a plan */
-.form-control {
-margin-left:25px;
-margin-right:25px;
+
+.login{
+	margin-left:25px;
 }
 
 #featured-exhibits {
@@ -83,6 +92,7 @@ margin-right:25px;
 	border-width:1px;
 	padding:20px 20px 20px 40px;
 	border-radius:5px;
+	margin-top:10px;
 }
 
 
@@ -92,4 +102,26 @@ margin-right:25px;
 	border-width:1px;
 	padding:20px 20px 20px 40px;
 	border-radius:5px;
+}
+
+.listmap{
+	text-align:center;
+}
+.listview{
+	margin:25px;
+}
+
+.title3{
+	margin:25px;
+}
+
+.submit-answer{
+	float:right;
+}
+
+.mapdisplay{
+	padding:200px;
+	border-color:#c4c4c4;
+	border-style:solid;
+	border-width:1px;
 }
