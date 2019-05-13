@@ -1,6 +1,7 @@
 
 const express = require('express');
 const app = express();
+const request = require("request");
 
 // bcrypt
 // use this library to interface with SQLite databases: https://github.com/mapbox/node-sqlite3
@@ -27,6 +28,11 @@ app.get('/current', (req, res) => {
        // failed, so return an empty object instead of undefined
 
   });
+});
+
+request('https://api.harvardartmuseums.org/object?keyword=dog&size=10&apikey=3626f450-6473-11e9-a8d2-cd4f8edc6e52', { json: true }, (err, res, body) => {
+  if (err) { return console.log(err); }
+  console.log(body.info);
 });
 
 // POST data about a user to insert into the database
