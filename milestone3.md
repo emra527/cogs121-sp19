@@ -15,8 +15,8 @@ Andrew Auh
 ![Image of UI5](UI_Screenshots/Milestone3/ui5.png)
 ![Image of UI6](UI_Screenshots/Milestone3/ui6.png)  
 "Student" Path  
-![Image of UI7](UI_Screenshots/ui7.png)
-![Image of UI8](UI_Screenshots/ui8.png)
+![Image of UI7](UI_Screenshots/Milestone3/ui7.png)
+![Image of UI8](UI_Screenshots/Milestone3/ui8.png)
 
 ## Differences with Milestone 2
 The changes we made in our UI for this milestone, included fixing styling tweaks from our previous milestone and changing our filler text to include data from our API. This latter change is most evident on the "Start a Plan" page, where the user can search through the museum database to find particular items. In addition to styling changes to provide more consistency and make information more visible and organized, we also implemented the frontend of a "Checkpoint Question" feature in both the student and educator portals. We envision this feature being something that teachers can use to enable learning and engagement with their students. 
