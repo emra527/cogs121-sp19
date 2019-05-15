@@ -20,8 +20,8 @@ Based on our TA feedback, we will be continuing with our original idea of the ap
 ![Image of UI5](UI_Screenshots/Milestone2/UI5.png)
 ![Image of UI6](UI_Screenshots/Milestone2/UI6.png)  
 "Student" Path  
-![Image of UI7](UI_Screenshots/UI7.png)
-![Image of UI8](UI_Screenshots/UI8.png)
+![Image of UI7](UI_Screenshots/Milestone2/UI7.png)
+![Image of UI8](UI_Screenshots/Milestone2/UI8.png)
 
 ### How the screenshots differ from Milestone 1 proposal
 Our screenshots are fairly direct adaptations of both of our paper prototypes. While we maintained the general flow and many UI elements from our second prototype, we also included some of the features present in our first prototype -- namely the map component which seemed like a useful visual tool for our users. As a result, our most recent UI contains components of both of our initial prototypes. 
