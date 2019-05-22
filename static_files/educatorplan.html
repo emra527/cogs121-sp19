@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="../css/home.css">
   <script src="jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
   <script type="text/javascript">
   // jQuery convention for running when the document has been fully loaded:
@@ -19,11 +21,11 @@
     }else{
      window.location.href="home_withBackend.html";
    }
-$('#searchButton').click(() => {
-  const requestURL = 'https://api.harvardartmuseums.org/object?size=10&apikey=3626f450-6473-11e9-a8d2-cd4f8edc6e52&keyword=' + $('#searchQuery').val();
-  console.log(requestURL);
-  console.log('making ajax request to:', requestURL);
-  $.ajax({
+   $('#searchButton').click(() => {
+    const requestURL = 'https://api.harvardartmuseums.org/object?size=10&apikey=3626f450-6473-11e9-a8d2-cd4f8edc6e52&keyword=' + $('#searchQuery').val();
+    console.log(requestURL);
+    console.log('making ajax request to:', requestURL);
+    $.ajax({
       // all URLs are relative to http://localhost:3000/
       url: requestURL,
       type: 'GET',
@@ -41,8 +43,9 @@ $('#searchButton').click(() => {
             list.push(e.title);
           });
           for (var x=0; x<list.length; x++){
-            $('#featuredlist').append('<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="check' + x + '"><label class="form-check-label" for="check' + x + '">' + list[x] + '</label></div>');
+            $('#featuredlist').append('<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="check' + x + '"><label class="form-check-label" for="check' + x + '">' + list[x] + '</label><button type="button" class="btn btn-primary popmodal">...</button></div>');
           }
+
           $('#next').show(); $('#back').show();
           if(data.info.next) {nextrequest = data.info.next; console.log(nextrequest);}
           if(data.info.prev) {prevrequest = data.info.prev;}
@@ -50,7 +53,9 @@ $('#searchButton').click(() => {
           $('#featured-exhibits').html('No results found!');
           $('#featuredlist').hide();
         }
-
+        $('.popmodal').click(() => {
+          $("#exampleModal").modal();
+        });
       },
     });
 
@@ -59,64 +64,66 @@ $('#searchButton').click(() => {
     $(document).ajaxError(() => {
       $('#status').html('Error: unknown ajaxError!');
     });
+
   }); 
-  $('#next').click(() =>
-          {
-            if(nextrequest) {
-              $.ajax({
-                url: nextrequest,
-                type: 'GET',
-                dataType: 'json',
-                success: (data) => {
-                  $('#featuredlist').empty();
-                  $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
-                  $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
-                  var list2 = new Array();
-                  const artresults2 = data.records;
-                  artresults2.forEach((e) => {
-                    list2.push(e.title);
-                  });
-                  for(var x=0; x < list2.length; x++) {
-                    $('#featuredlist').append('<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="check' + x + '"><label class="form-check-label" for="check' + x + '">' + list2[x] + '</label></div>');
-                  }
-                  if(data.info.next) {nextrequest = data.info.next;}
-                  if(data.info.prev) {prevrequest = data.info.prev;}
-                },
-              });
-            }
-            else {
-              console.log("No Next Page");
-            }
-          });
-          $('#back').click(() =>
-          {
-            if(prevrequest) {
-              $.ajax({
-                url: prevrequest,
-                type: 'GET',
-                dataType: 'json',
-                success: (data) => {
-                  $('#featuredlist').empty();
-                  $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
-                  $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
-                  var list2 = new Array();
-                  const artresults2 = data.records;
-                  artresults2.forEach((e) => {
-                    list2.push(e.title);
-                  });
-                  for(var x=0; x < list2.length; x++) {
-                    $('#featuredlist').append('<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="check' + x + '"><label class="form-check-label" for="check' + x + '">' + list2[x] + '</label></div>');
-                  }
-                  if(data.info.next) {nextrequest = data.info.next;}
-                  if(data.info.prev) {prevrequest = data.info.prev;}
-                },
-              });
-            }
-            else {
-              console.log("No Prev Page");
-            }
-          });
+$('#next').click(() =>
+{
+  if(nextrequest) {
+    $.ajax({
+      url: nextrequest,
+      type: 'GET',
+      dataType: 'json',
+      success: (data) => {
+        $('#featuredlist').empty();
+        $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
+        $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
+        var list2 = new Array();
+        const artresults2 = data.records;
+        artresults2.forEach((e) => {
+          list2.push(e.title);
+        });
+        for(var x=0; x < list2.length; x++) {
+          $('#featuredlist').append('<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="check' + x + '"><label class="form-check-label" for="check' + x + '">' + list2[x] + '</label></div>');
+        }
+        if(data.info.next) {nextrequest = data.info.next;}
+        if(data.info.prev) {prevrequest = data.info.prev;}
+      },
+    });
+  }
+  else {
+    console.log("No Next Page");
+  }
 });
+$('#back').click(() =>
+{
+  if(prevrequest) {
+    $.ajax({
+      url: prevrequest,
+      type: 'GET',
+      dataType: 'json',
+      success: (data) => {
+        $('#featuredlist').empty();
+        $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
+        $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
+        var list2 = new Array();
+        const artresults2 = data.records;
+        artresults2.forEach((e) => {
+          list2.push(e.title);
+        });
+        for(var x=0; x < list2.length; x++) {
+          $('#featuredlist').append('<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="check' + x + '"><label class="form-check-label" for="check' + x + '">' + list2[x] + '</label></div>');
+        }
+        if(data.info.next) {nextrequest = data.info.next;}
+        if(data.info.prev) {prevrequest = data.info.prev;}
+      },
+    });
+  }
+  else {
+    console.log("No Prev Page");
+  }
+});
+});
+
 </script>
 
 
@@ -126,8 +133,8 @@ $('#searchButton').click(() => {
 	<div id="status">current user</div>
 	<button id = "logOutButton" class="btn btn-primary">Log out</button>
   <div class="rectangleheader">
-  <h1 class="title2">Step 2: Start a Plan</h1>
-</div>
+    <h1 class="title2">Step 2: Start a Plan</h1>
+  </div>
   <br>
   <input type="text" placeholder="Search the museum" aria-label="Search" id="searchQuery">
   <button type="submit" value="refresh" class="btn btn-primary mb-2" id="searchButton">Search</button>
@@ -150,6 +157,30 @@ $('#searchButton').click(() => {
   <div class="next-button">
     <a href="pathgenerate.html" class="btn btn-primary">Next ></a>
   </div>
-  
+
+  <!-- Modal -->
+
+  <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">European Art, 17th - 19th century</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        John O'Reilly, American (Orange, New Jersey born 1930) 
+        <br>Photograph, 1995
+        <br> Modern and Contemporary Art, Floor 1
+        <br>[img]
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
