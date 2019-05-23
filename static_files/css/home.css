@@ -144,3 +144,9 @@ float:left;
     
     color: #FFFFFF;
 }
+
+.popmodal{
+	position:absolute;
+	right:0;
+}
+
