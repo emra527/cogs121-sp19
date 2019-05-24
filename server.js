@@ -24,15 +24,27 @@ app.get('/users', (req, res) => {
 app.get('/current', (req, res) => {
   // db.all() fetches all results from an SQL query into the 'rows' variable:
   db.all('SELECT * FROM current_user', (err, rows) => {
-    res.send(rows[0]);
+    if(rows[0]) {
+      res.send(rows[0]);
+    }
+    else {
+      res.send({});
+    }
        // failed, so return an empty object instead of undefined
 
   });
 });
 
-request('https://api.harvardartmuseums.org/object?keyword=dog&size=10&apikey=3626f450-6473-11e9-a8d2-cd4f8edc6e52', { json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
-  console.log(body.info);
+app.get('/plans', (req, res) => {
+  db.all('SELECT * FROM plans', (err, rows) => {
+    if(rows[0]) {
+      res.send(rows[0]);
+    }
+    else {
+      res.send({});
+    }
+  });
+
 });
 
 // POST data about a user to insert into the database
@@ -102,6 +114,27 @@ app.post('/SorT', (req, res) => {
         res.send({message: 'error in app.post(/users)'});
       } else {
         res.send({message: 'successfully run app.post(/users)'});
+      }
+    }
+    );
+});
+
+app.post('/plans', (req, res) => {
+  console.log(req.body);
+
+  db.run(
+    'INSERT INTO plans VALUES ($plan, $username)',
+    // parameters to SQL query:
+    {
+      $plan: req.body.plan,
+      $username: req.body.username,
+    },
+    // callback function to run when the query finishes:
+    (err) => {
+      if (err) {
+        res.send({message: 'error in app.post(/plans)'});
+      } else {
+        res.send({message: 'successfully run app.post(/plans)'});
       }
     }
     );

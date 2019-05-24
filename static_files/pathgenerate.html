@@ -10,6 +10,7 @@
 	<script src="jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
 
+	const apikey = '3626f450-6473-11e9-a8d2-cd4f8edc6e52';
 	// jQuery convention for running when the document has been fully loaded:
 	$(document).ready(() => {
 		console.log('page ready');
@@ -17,6 +18,14 @@
 		}else{
 			window.location.href="home_withBackend.html";
 		}
+		$.ajax({
+			url: 'plans',
+			type: 'GET',
+			dataType: 'json',
+			success: (data) => {
+				display(Object.keys(JSON.parse(data.plan)));
+			},
+		});
 		/*$.ajax({
 			// all URLs are relative to http://localhost:3000/
 			url: 'current',
@@ -47,6 +56,27 @@
 	    $('#status').html('Error: unknown ajaxError!');
 	  });
 	});
+	function display(plans) {
+		let artist = 'Unavailable';
+		plans.forEach((e) => {
+			$.ajax({
+			url: 'https://api.harvardartmuseums.org/object/' + e + '?apikey=' + apikey,
+			type: 'GET',
+			dataType: 'json',
+			success: (data) => {
+				if(data.people) {
+					artist = data.people[0].name;
+				}
+				$('#mapdisplay').append(
+				`<div class="exhibit-checks">
+         <input class="form-check-input" type="checkbox" checked disabled>
+         <label class="form-check-label">"` + data.title + `" (` + data.dated + `)</label><br>
+         <label style="font-size: 10px">Created by: ` + artist + `</label></div>`		
+				)
+			},
+			});
+		});
+	}
 	</script>
 </head>
 
@@ -57,7 +87,7 @@
 <h1 class="title2">Creating Path</h1>
 </div>
 <br>
-<div class="mapdisplay">
+<div class="form-check" id="mapdisplay">
 	
 </div>
 <div class="back-button">

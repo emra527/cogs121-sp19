@@ -13,9 +13,11 @@
 
   <script type="text/javascript">
   const apikey = '3626f450-6473-11e9-a8d2-cd4f8edc6e52';
+  let nextrequest; let prevrequest;
+  let checkedBoxes = {};
   // jQuery convention for running when the document has been fully loaded:
   $(document).ready(() => {
-    let nextrequest; let prevrequest;
+
     console.log("redirecting");
     $('#next').hide(); $('#back').hide();
     if(window.localStorage.getItem('logInStatus')){
@@ -23,6 +25,45 @@
      window.location.href="home_withBackend.html";
    }
    $('#exampleModal').modal();
+
+   function datahandling(data)  {
+    if (data.records) {
+          $('#featuredlist').empty();
+          $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
+          $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
+          let titles = new Array();
+          let id = new Array();
+          let artists = new Array();
+          let years = new Array();
+          data.records.forEach((e) => {
+            titles.push(e.title);
+            id.push(e.id)
+            if(e.people) {
+              artists.push(e.people[0].name);
+            }
+            else {
+              artists.push("Unavailable");
+            }
+            years.push(e.dated);
+          });
+          for (let x=0; x<titles.length; x++){
+            let url = 'https://api.harvardartmuseums.org/object/' + id[x] + '?apikey=' + apikey;
+            $('#featuredlist').append(
+              `<div class="exhibit-checks">
+                <input class="form-check-input" type="checkbox" onClick=checkmarked("` + url + `","` + id[x] + `") value="" id="` + id[x] + `">
+                  <label class="form-check-label" for="` + x + `">"` + titles[x] + `" (` + years[x] + `)</label><br>
+                  <label style="font-size: 10px">Created by: ` + artists[x] + `</label>
+                  <button type="button" class="btn btn-link" style = "font-size: 10px;" data-toggle="modal" data-target="#modal" onclick=moreData("` + url + `")>More Info...</button></div>`
+            );
+          }
+          if(data.info.next) {nextrequest = data.info.next; console.log(nextrequest);}
+          if(data.info.prev) {prevrequest = data.info.prev;}
+        } else {
+          $('#featured-exhibits').html('No results found!');
+          $('#featuredlist').hide();
+        }
+   }
+
 $('#searchButton').click(() => {
   const requestURL = 'https://api.harvardartmuseums.org/object?size=10&apikey=' + apikey + '&keyword=' + $('#searchQuery').val();
   console.log(requestURL);
@@ -34,29 +75,8 @@ $('#searchButton').click(() => {
       dataType : 'json', // this URL returns data in JSON format
       success: (data) => {
         console.log('You received some data!', data);
-
-        if (data.records) {
-          $('#featuredlist').empty();
-          $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
-          $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
-          var titles = new Array();
-          var id = new Array();
-          data.records.forEach((e) => {
-            titles.push(e.title);
-            id.push(e.id)
-          });
-          for (var x=0; x<titles.length; x++){
-            $('#featuredlist').append(
-              '<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="' + x + '"><label class="form-check-label" for="' + x + '">' + titles[x] + '</label><button type="button" class="btn btn-link" style = "font-size: 10px;" data-toggle="modal" data-target="#modal" onclick=moreData("' + 'https://api.harvardartmuseums.org/object/' + id[x] + '?apikey=' + apikey + '")>More Info...</button></div>');
-          }
-          $('#next').show(); $('#back').show();
-          if(data.info.next) {nextrequest = data.info.next; console.log(nextrequest);}
-          if(data.info.prev) {prevrequest = data.info.prev;}
-        } else {
-          $('#featured-exhibits').html('No results found!');
-          $('#featuredlist').hide();
-        }
-
+        datahandling(data);
+        $('#next').show(); $('#back').show();
       },
     });
 
@@ -66,6 +86,7 @@ $('#searchButton').click(() => {
       $('#status').html('Error: unknown ajaxError!');
     });
   }); 
+
   $('#next').click(() =>
           {
             if(nextrequest) {
@@ -74,19 +95,8 @@ $('#searchButton').click(() => {
                 type: 'GET',
                 dataType: 'json',
                 success: (data) => {
-                  $('#featuredlist').empty();
-                  $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
-                  $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
-                  var titles = new Array();
-                  var id = new Array();
-                  data.records.forEach((e) => {
-                    titles.push(e.title);
-                    id.push(e.id)
-                  });
-                  for (var x=0; x<titles.length; x++){
-                    $('#featuredlist').append(
-                      '<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="' + x + '"><label class="form-check-label" for="' + x + '">' + titles[x] + '</label><button type="button" class="btn btn-link" style = "font-size: 10px;" data-toggle="modal" data-target="modal" onclick=moreData("' + 'https://api.harvardartmuseums.org/object/' + id[x] + '?apikey=' + apikey + '")>More Info...</button></div>');
-                  }
+                  console.log(data);
+                  datahandling(data);
                   if(data.info.next) {nextrequest = data.info.next;}
                   if(data.info.prev) {prevrequest = data.info.prev;}
                 },
@@ -104,19 +114,7 @@ $('#searchButton').click(() => {
                 type: 'GET',
                 dataType: 'json',
                 success: (data) => {
-                  $('#featuredlist').empty();
-                  $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
-                  $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
-                  var titles = new Array();
-                  var id = new Array();
-                  data.records.forEach((e) => {
-                    titles.push(e.title);
-                    id.push(e.id)
-                  });
-                  for (var x=0; x<titles.length; x++){
-                    $('#featuredlist').append(
-                      '<div class="exhibit-checks"><input class="form-check-input" type="checkbox" value="" id="' + x + '"><label class="form-check-label" for="' + x + '">' + titles[x] + '</label><button type="button" class="btn btn-link" style = "font-size: 10px;" data-toggle="modal" data-target="#modal" onclick=moreData("' + 'https://api.harvardartmuseums.org/object/' + id[x] + '?apikey=' + apikey + '")>More Info...</button></div>');
-                  }
+                  datahandling(data);
                   if(data.info.next) {nextrequest = data.info.next;}
                   if(data.info.prev) {prevrequest = data.info.prev;}
                 },
@@ -127,21 +125,60 @@ $('#searchButton').click(() => {
             }
           });
 });
-function moreData(clicklink) {
-      console.log(clicklink);
-      $.ajax({
-        url: clicklink,
-        type: 'GET',
-        dataType: 'json',
-        success: (data) => {
-          console.log(data);
-          document.getElementById("modalTitle").innerHTML = "Title: " + data.title;
-          document.getElementById("modalBody").innerHTML = 
-          "<img src =" + data.images[0].baseimageurl + "?height=200&width=200>" +
-          "<h6>Artist: " + data.people[0].name + "</h6>";
-        },
-      });
-  }
+    function moreData(clicklink) {
+          let artist = 'Unavailable';
+          console.log(clicklink);
+          $.ajax({
+            url: clicklink,
+            type: 'GET',
+            dataType: 'json',
+            success: (data) => {
+              if(data.people) {
+                artist = data.people[0].name;
+              }
+              console.log(data);
+              document.getElementById("modalTitle").innerHTML = "Title: " + data.title;
+              document.getElementById("modalBody").innerHTML = 
+              `<center><img src =` + data.images[0].baseimageurl + `?height=200&width=200></center><hr>
+              <p>Artist: ` + artist + `<br>
+              Created in: ` + data.dated + `</p>`;
+            },
+          });
+      }
+
+      function checkmarked(clicklink, id) {
+        let checkbox = document.getElementById(id);
+
+        if(checkbox.checked == true)  {
+          console.log(id);
+          checkedBoxes[id] = id;
+          console.log(checkedBoxes);
+        }
+        else {
+          if(checkedBoxes[id]) {
+            delete checkedBoxes[id];
+            console.log(checkedBoxes);
+          }
+        }
+      }
+
+      function nextPage() {
+        if(Object.keys(checkedBoxes).length == 0) {
+          alert("Select at least one art piece!");
+        }
+        else {
+          $.ajax({
+            url: 'plans',
+            type: 'POST',
+            data: {
+              username: 'tim',
+              plan: JSON.stringify(checkedBoxes),
+            }
+          });
+          checkedBoxes = {};
+          window.location.href = "pathgenerate.html";
+        }
+      }
 </script>
 
 
@@ -174,7 +211,7 @@ function moreData(clicklink) {
     <a href="register.html" class="btn btn-primary">< Back</a>
   </div>
   <div class="next-button">
-    <a href="pathgenerate.html" class="btn btn-primary">Next ></a>
+    <button class="btn btn-primary" onClick=nextPage()>Next ></button>
   </div>
 
   <!-- Modal -->
