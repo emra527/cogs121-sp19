@@ -12,7 +12,7 @@ Museums can have collections that span hundreds to thousands of pieces, lending 
 
 ## Screenshots of UI
 ![Image of UI1](UI_Screenshots/Milestone5/UI1.png)
-![Image of UI2](UI_Screenshots/Milestone5/ui2.png)
+![Image of UI2](UI_Screenshots/Milestone5/ui2.png)  
 "Educator" Path  
 ![Image of UI3](UI_Screenshots/Milestone5/UI3.png)
 ![Image of UI4](UI_Screenshots/Milestone5/UI4.png)
@@ -26,11 +26,11 @@ Museums can have collections that span hundreds to thousands of pieces, lending 
 
 
 
-## Improvements from Milestone 4
+## Improvements from Milestone 4  
 Since Milestone 4, we updated the majority of the functionality within our app. For instance, the app now generates a random code associated with particular plans that can be shared with students to gain access to it. This code can be copied to the clipboard so that it can be distributed among students. From there students can view their educators' plan and update their progress as they explore the museum.
 
 ## Data Usage
-![Image of UI3](UI_Screenshots/Milestone5/UI3.png)![Image of UI3.1](UI_Screenshots/Milestone5/UI4.png)
+![Image of UI3](UI_Screenshots/Milestone5/UI3.png)![Image of UI3.1](UI_Screenshots/Milestone5/UI4.png)  
 We used the Harvard Art Museums API to provide data about all the pieces in their collection. In the app, users can search for pieces in the museum and view more information about them (name, year, artist, and an image). From there, they can add pieces to a plan and share the plan with students.
 
 In addition to what we have implemented so far, we would love to be able to create a map that uses the pieces' locations in the museum so that users can create and follow specific paths in the physical space. This would help provide more guidance for students and perhaps help create more efficient plans. We have also been looking into the function of allowing teachers to create checkpoint questions for their students in order to facilitate more engagement and learning for students while at the museum. 
