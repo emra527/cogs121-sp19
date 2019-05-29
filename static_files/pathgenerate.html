@@ -16,38 +16,23 @@
 		console.log('page ready');
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
-			window.location.href="home_withBackend.html";
+			window.location.href="home.html";
 		}
-		$.ajax({
-			url: 'plans',
-			type: 'GET',
-			dataType: 'json',
-			success: (data) => {
-				display(Object.keys(JSON.parse(data.plan)));
-			},
-		});
-		/*$.ajax({
-			// all URLs are relative to http://localhost:3000/
-			url: 'current',
-			type: 'GET',
-			dataType : 'json', // this URL returns data in JSON format
-			success: (data) => {
-				console.log('You received some data!', data);
-
-				if (data.identity && data.username) {
-					$('#status').html('You have logged in as '+ data.username);
-					tempuser = data.username;
-				} else {
-					$('#status').html('Error: user account does not exist!');
-				}
-			},
-		});*/
 		const tempuser = window.localStorage.getItem('username');;
-		console.log(tempuser);
 		$('#status').html('You have logged in as '+ tempuser);
 		$('#logOutButton').click((event) => {
 			window.localStorage.clear();
-			window.location.href="home_withBackend.html";
+			window.location.href="home.html";
+		});
+
+		$.ajax({
+			url: 'plans/' + tempuser,
+			type: 'GET',
+			dataType: 'json',
+			success: (data) => {
+				console.log(data);
+				display(Object.keys(JSON.parse(data.plan)));
+			},
 		});
 
 	  // define a generic Ajax error handler:

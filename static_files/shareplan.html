@@ -9,6 +9,25 @@
 	 <link rel="stylesheet" href="../css/pages.css">
 	 <link rel="stylesheet" href="../css/shareplan.css">
 	<script src="jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(() => {
+			$.ajax({
+				url: 'plans/' + window.localStorage.getItem('username'), 
+				type: 'GET',
+				dataType : 'json', // this URL returns data in JSON format
+				success: (data) => {
+					console.log('You received some data!', data);
+					sharecode.setAttribute('value', data.sharecode);
+				},
+			});
+		});
+
+		function copyText() {
+			var copyText = document.getElementById("sharecode");
+			copyText.select();
+			document.execCommand("copy");
+		}
+	</script>
 </head>
 
 <body>
@@ -21,17 +40,17 @@
 		<h2 id="shareh2">Share code with your class</h2>
 		<p id="sharep">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 			sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-		<a href="" class="nextbutton" id="copybutton">Copy to Clipboard</a>
-		<a href="" class="nextbutton" id="emailbutton">Send via Email</a>
+			<br>
 		<input maxlength="6" style="
 		position: absolute;
-		width: 338px;
+		width: 398px;
 		height: 95px;
-		left: 90px;
+		left: 15px;
 		top: 250px;
 		display: inline-block;
 		border: none;
 		padding: 0;
+		padding-bottom: 10px;
 		width: 8.4ch;
 		background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.4ch) 0 100%/ 8ch 2px no-repeat;
 		font: 5ch droid sans mono, consolas, monospace;
@@ -40,7 +59,8 @@
 			outline: none;
 			color: dodgerblue;
 		  }
-		" value="S37489" readonly />
+		" value="S37489" readonly id="sharecode" /><br><br>
+		<button class="nextbutton" id="copybutton" onclick="copyText()">Copy to Clipboard</a>
 	</div>
 <a href="educator-portal.html" class="btn btn-primary nextbutton" id="finish-button">Finish ></a>
 

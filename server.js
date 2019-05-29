@@ -35,8 +35,13 @@ app.get('/current', (req, res) => {
   });
 });
 
-app.get('/plans', (req, res) => {
-  db.all('SELECT * FROM plans', (err, rows) => {
+app.get('/plans/:name', (req, res) => {
+  db.all('SELECT * FROM plans WHERE username=$username',
+  {
+    $username: req.params.name,
+  },
+  
+  (err, rows) => {
     if(rows[0]) {
       res.send(rows[0]);
     }
@@ -45,6 +50,21 @@ app.get('/plans', (req, res) => {
     }
   });
 
+});
+
+app.get('/plans/code/:code', (req, res) => {
+  db.all('SELECT * FROM plans WHERE sharecode=$code',
+  {
+    $code: req.params.code,
+  },
+  (err, rows) => {
+    if(rows[0]) {
+      res.send(rows[0]);
+    }
+    else {
+      res.send({});
+    }
+  });
 });
 
 // POST data about a user to insert into the database
@@ -123,11 +143,12 @@ app.post('/plans', (req, res) => {
   console.log(req.body);
 
   db.run(
-    'INSERT INTO plans VALUES ($plan, $username)',
+    'INSERT INTO plans VALUES ($plan, $username, $sharecode)',
     // parameters to SQL query:
     {
       $plan: req.body.plan,
       $username: req.body.username,
+      $sharecode: req.body.sharecode,
     },
     // callback function to run when the query finishes:
     (err) => {
@@ -139,13 +160,6 @@ app.post('/plans', (req, res) => {
     }
     );
 });
-
-// GET profile data for a user
-//
-// To test, open these URLs in your browser:
-//   http://localhost:3000/users/Philip
-//   http://localhost:3000/users/Carol
-//   http://localhost:3000/users/invalidusername
 app.get('/users/:userid', (req, res) => {
   const nameToLookup = req.params.userid; // matches ':userid' above
 
@@ -167,26 +181,6 @@ app.get('/users/:userid', (req, res) => {
     }
     );
 });
-
-
-const fakeGalleries = {
-  'Dutch':
-  {
-    "objectcount": 27,
-    "floor": 2,
-    "name": "European Art, 17th–19th century",
-    "theme": "Seventeenth–Century Dutch and Flemish Art",
-    "keywords": "Dutch"
-  },
-  'Renaissance':
-  {
-    "objectcount": 35,
-    "floor": 2,
-    "name": "European Art, 13th–16th century",
-    "theme": "The Renaissance",
-    "keywords":"Renaissance"
-  }
-};
 
 
 // GET a list of all galleries

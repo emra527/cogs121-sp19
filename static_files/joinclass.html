@@ -9,6 +9,32 @@
 	 <link rel="stylesheet" href="../css/pages.css">
 	 <link rel="stylesheet" href="../css/joinclass.css">
 	<script src="jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(() => {
+		$('#joinnextbutton').click(() => {
+			if($('#classcode').val().length == 6) {
+				$.ajax({
+				url: 'plans/code/' + $('#classcode').val(),
+				type: 'GET',
+				dataType: 'json',
+				success: (data) => {
+					if(Object.keys(data).length == 0) {
+						alert("Code not found!");
+					}
+					else {
+						console.log(data);
+						window.localStorage.setItem('code', $('#classcode').val());
+						window.location.href = "student-portal.html";
+					}
+					},
+				});
+			}
+			else {
+				alert("Please add a valid code!");
+			}
+		});
+	});
+	</script>
 	
 </head>
 
@@ -39,11 +65,11 @@
 		outline: none;
 		color: dodgerblue;
   	}
-	" />
+	" id = "classcode"/>
 	<br><br>
 	<hr>
 </div>
 
-<a href="student-portal.html" class="nextbutton" id="joinnextbutton">NEXT ></a>
+<button class="nextbutton" id="joinnextbutton">NEXT ></a>
 </body>
 </html>

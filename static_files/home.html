@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+
+
 <html>
-<!-- Sign-in screen-->
 <head>
 	<title>Art Museum Portal</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,146 @@
 
 
 	<script src="jquery-3.3.1.min.js"></script>
-</head>
+	<script type="text/javascript">
+
+	// jQuery convention for running when the document has been fully loaded:
+	$(document).ready(() => {
+	  $('#readButton').click((event) => {
+	    const requestURL = 'users/' + $('#exampleInputEmail1').val();
+	    console.log('making ajax request to:', requestURL);
+			event.preventDefault();
+	    // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
+	    // Using the core $.ajax() method since it's the most flexible.
+	    // ($.get() and $.getJSON() are nicer convenience functions)
+	    $.ajax({
+	      // all URLs are relative to http://localhost:3000/
+	      url: requestURL,
+	      type: 'GET',
+	      dataType : 'json', // this URL returns data in JSON format
+	      success: (data) => {
+	        console.log('You received some data!', data);
+
+	        if (data.name && data.password) {
+						if(data.password==$('#exampleInputPassword1').val()){
+							$('#exist').html('correct!!!');
+							window.localStorage.setItem('username',data.name);
+							window.localStorage.setItem('logInStatus','1');
+							if(data.SorT=='0'){
+								window.location.href="register.html";
+							}
+							if(data.SorT=='1'){
+								$.ajax({
+									url: 'plans/' + data.name,
+									type: 'GET',
+									dataType: 'json',
+									success: (data) => {
+										if(data.sharecode) {
+											window.location.href="educator-portal.html";
+										}else {
+											window.location.href="educatorplan.html";
+										}
+									},
+								});
+
+								$(document).ajaxError(() => {
+								});
+
+							}
+							if(data.SorT=='2'){
+								window.location.href="joinclass.html";
+							}
+						}
+						else{
+							$('#exist').html('Error: password incorrect!');
+						}
+	        } else {
+	          $('#exist').html('Error: user account does not exist!');
+	        }
+	      },
+	    });
+	  });
+
+	  $('#allUsersButton').click(() => {
+	    $.ajax({
+	      url: 'users',
+	      type: 'GET',
+	      dataType : 'json',
+	      success: (data) => {
+	        console.log('You received some data!', data);
+	        $('#status').html('All users: ' + data);
+	      },
+	    });
+	  });
+
+		$('#checkButton').click( (event) => {
+			console.log('button pressed!');
+			event.preventDefault();
+	    $.ajax({
+	      url: 'users',
+	      type: 'GET',
+	      dataType : 'json',
+	      success: (data) => {
+	        console.log('You received some data!', data);
+	        $('#exist').html('All users: ' + data);
+	      },
+	    });
+	  });
+
+	  $('#insertButton').click((event) => {
+			const requestURL = 'users/' + $('#exampleInputEmail1').val();
+	    console.log('making ajax request to:', requestURL);
+			event.preventDefault();
+			$.ajax({
+	      // all URLs are relative to http://localhost:3000/
+	      url: requestURL,
+	      type: 'GET',
+	      dataType : 'json', // this URL returns data in JSON format
+	      success: (data) => {
+	        console.log('You received some data!', data);
+
+	        if (data.name) {
+	          $('#exist').html(data.name +' already exists');
+	        } else {
+						$.ajax({
+				      // all URLs are relative to http://localhost:3000/
+				      url: 'users',
+				      type: 'POST', // <-- this is POST, not GET
+				      data: {
+				              name: $('#exampleInputEmail1').val(),
+				              password: $('#exampleInputPassword1').val(),
+											SorT: '0',
+											plan: '0',
+				            },
+				      success: (data) => {
+								console.log('success!');
+				        $('#exist').html('Success!');
+				      }
+				    });
+	        }
+	      },
+	    });
+	  });
+
+	  // define a generic Ajax error handler:
+	  // http://api.jquery.com/ajaxerror/
+	  $(document).ajaxError(() => {
+	    $('#status').html('Error: unknown ajaxError!');
+		});
+		
+	});
+
+	function checkUser(username) {
+
+						
+		}
+	</script>
+
+	</head>
+
+
+
+
+
 
 <body>
 
@@ -24,7 +163,12 @@
   <div class="form-group">
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-  <a href="register.html" class="btn btn-primary">Submit</a>
+
+
+	<button id="checkButton" class="btn btn-primary">Check</button>
+	<button id="insertButton" class="btn btn-primary">Sign up</button>
+	<button id="readButton" class="btn btn-primary">Sign in</button>
+	<div id="exist"></div>
 </form>
 </div>
 

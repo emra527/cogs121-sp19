@@ -18,11 +18,22 @@
   // jQuery convention for running when the document has been fully loaded:
   $(document).ready(() => {
 
-    console.log("redirecting");
+		if(window.localStorage.getItem('logInStatus')){
+		}else{
+			window.location.href="home.html";
+		}
+		const tempuser = window.localStorage.getItem('username');;
+		$('#status').html('You have logged in as '+ tempuser);
+		$('#logOutButton').click((event) => {
+			window.localStorage.clear();
+			window.location.href="home.html";
+		});
+    document.getElementById('nextbutton').setAttribute('onClick', 'nextPage("' + tempuser + '")')
+
     $('#next').hide(); $('#back').hide();
     if(window.localStorage.getItem('logInStatus')){
     }else{
-     window.location.href="home_withBackend.html";
+     window.location.href="home.html";
    }
    $('#exampleModal').modal();
 
@@ -146,6 +157,16 @@ $('#searchButton').click(() => {
           });
       }
 
+      function makeid() {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < 6; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+      }
+
       function checkmarked(clicklink, id) {
         let checkbox = document.getElementById(id);
 
@@ -162,7 +183,7 @@ $('#searchButton').click(() => {
         }
       }
 
-      function nextPage() {
+      function nextPage(user) {
         if(Object.keys(checkedBoxes).length == 0) {
           alert("Select at least one art piece!");
         }
@@ -171,10 +192,12 @@ $('#searchButton').click(() => {
             url: 'plans',
             type: 'POST',
             data: {
-              username: 'tim',
+              username: user,
               plan: JSON.stringify(checkedBoxes),
+              sharecode: makeid(),
             }
           });
+          window.localStorage.setItem('plan', JSON.stringify(checkedBoxes));
           checkedBoxes = {};
           window.location.href = "pathgenerate.html";
         }
@@ -211,7 +234,7 @@ $('#searchButton').click(() => {
     <a href="register.html" class="btn btn-primary">< Back</a>
   </div>
   <div class="next-button">
-    <button class="btn btn-primary" onClick=nextPage()>Next ></button>
+    <button class="btn btn-primary" id="nextbutton" onClick=nextPage()>Next></button>
   </div>
 
   <!-- Modal -->
