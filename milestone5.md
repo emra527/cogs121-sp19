@@ -1,4 +1,4 @@
-# UCSD COGS 121 Spring 2019 Project - Milestone 4
+# UCSD COGS 121 Spring 2019 Project - Milestone 5
 ## Team name
 Band of the Hawk
 ## Team members
