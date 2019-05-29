@@ -12,16 +12,17 @@ Museums can have collections that span hundreds to thousands of pieces, lending 
 
 ## Screenshots of UI
 ![Image of UI1](UI_Screenshots/Milestone5/UI1.png)
+![Image of UI2](UI_Screenshots/Milestone5/ui2.png)
 "Educator" Path  
-![Image of UI2](UI_Screenshots/Milestone5/UI3.png)
-![Image of UI3](UI_Screenshots/Milestone5/UI4.png)
-![Image of UI4](UI_Screenshots/Milestone5/UI5.png)
-![Image of UI5](UI_Screenshots/Milestone5/UI6.png)
-![Image of UI6](UI_Screenshots/Milestone5/UI7.png)  
+![Image of UI3](UI_Screenshots/Milestone5/UI3.png)
+![Image of UI4](UI_Screenshots/Milestone5/UI4.png)
+![Image of UI5](UI_Screenshots/Milestone5/UI5.png)
+![Image of UI6](UI_Screenshots/Milestone5/UI6.png)
+![Image of UI7](UI_Screenshots/Milestone5/UI7.png)  
 "Student" Path  
-![Image of UI7](UI_Screenshots/Milestone5/UI8.png)
-![Image of UI7](UI_Screenshots/Milestone5/UI9.png)
-![Image of UI7](UI_Screenshots/Milestone5/UI10.png)
+![Image of UI8](UI_Screenshots/Milestone5/UI8.png)
+![Image of UI9](UI_Screenshots/Milestone5/UI9.png)
+![Image of UI10](UI_Screenshots/Milestone5/UI10.png)
 
 
 
