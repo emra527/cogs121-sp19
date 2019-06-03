@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Choose between educator or student portals -->
+<!-- 
+	This screen allows newly registered users to pick between being a student or a educator,
+	which is important for the branching functionality of our app.
+-->
 <head>
 	<title>Art Museum Portal | Registration</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +15,7 @@
 
 	// jQuery convention for running when the document has been fully loaded:
 	$(document).ready(() => {
+		//General login checking
 		console.log('page ready');
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
@@ -22,22 +26,8 @@
 		const tempuser = window.localStorage.getItem('username');;
 		console.log(tempuser);
 		$('#status').html('You have logged in as '+ tempuser);
-		/*$.ajax({
-			// all URLs are relative to http://localhost:3000/
-			url: 'current',
-			type: 'GET',
-			dataType : 'json', // this URL returns data in JSON format
-			success: (data) => {
-				console.log('You received some data!', data);
 
-				if (data.identity && data.username) {
-					$('#status').html('You have logged in as '+ data.username);
-					tempuser = data.username;
-				} else {
-					$('#status').html('Error: user account does not exist!');
-				}
-			},
-		});*/
+		//Distinguishing the user specifically as a teacher
 		$('#teacherButton').click((event) => {
 			$.ajax({
 				// all URLs are relative to http://localhost:3000/
@@ -54,6 +44,7 @@
 			});
 		});
 
+		//Distinguishing the user specifically as a student
 		$('#studentButton').click((event) => {
 			$.ajax({
 				// all URLs are relative to http://localhost:3000/
@@ -69,6 +60,8 @@
 				}
 			});
 		});
+
+		//Logout handling, clearing localstorage
 		$('#logOutButton').click((event) => {
 			window.localStorage.clear();
 			window.location.href="home_withBackend.html";

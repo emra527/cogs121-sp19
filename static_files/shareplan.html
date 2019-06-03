@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Educator screen 3, share plan with students -->
+<!-- 
+	In this screen, the educator receives a randomly generated code to share with their students.
+	This code allows the students to access the assigned exhibits.
+ -->
 <head>
 	<title>Art Museum Portal | Educator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +14,7 @@
 	<script src="jquery-3.3.1.min.js"></script>
 	<script>
 		$(document).ready(() => {
+			//Access the share code from the database.
 			$.ajax({
 				url: 'plans/' + window.localStorage.getItem('username'), 
 				type: 'GET',
@@ -22,6 +26,7 @@
 			});
 		});
 
+		//Very basic copy-to-clipboard function
 		function copyText() {
 			var copyText = document.getElementById("sharecode");
 			copyText.select();

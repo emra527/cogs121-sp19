@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Educato screen 2 | Create a path-->
+<!-- 
+	Final confirmation page for the educator. This page shows the final list of exhibits they
+	will assign to the students.
+-->
 <head>
 	<title>Art Museum Portal | Educator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +16,7 @@
 	const apikey = '3626f450-6473-11e9-a8d2-cd4f8edc6e52';
 	// jQuery convention for running when the document has been fully loaded:
 	$(document).ready(() => {
+		//Login checking
 		console.log('page ready');
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
@@ -25,6 +29,7 @@
 			window.location.href="home.html";
 		});
 
+		//Get the plan
 		$.ajax({
 			url: 'plans/' + tempuser,
 			type: 'GET',
@@ -41,6 +46,8 @@
 	    $('#status').html('Error: unknown ajaxError!');
 	  });
 	});
+
+	//Display the plans from the data
 	function display(plans) {
 		let artist = 'Unavailable';
 		plans.forEach((e) => {

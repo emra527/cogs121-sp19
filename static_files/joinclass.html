@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<!-- Student screen 1 | Join Class -->
+<!-- 
+	This page is a section where students can enter their class code, and checks to see if it exists. 
+ -->
 <head>
 	<title>Art Museum Portal | Educator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +13,11 @@
 	<script src="jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(() => {
+		//Checking of class code
 		$('#joinnextbutton').click(() => {
 			if($('#classcode').val().length == 6) {
 				$.ajax({
-				url: 'plans/code/' + $('#classcode').val(),
+				url: 'plans/code/' + $('#classcode').val().toUpperCase(),
 				type: 'GET',
 				dataType: 'json',
 				success: (data) => {
@@ -23,7 +26,7 @@
 					}
 					else {
 						console.log(data);
-						window.localStorage.setItem('code', $('#classcode').val());
+						window.localStorage.setItem('code', $('#classcode').val().toUpperCase());
 						window.location.href = "student-portal.html";
 					}
 					},
@@ -52,8 +55,9 @@
 	position: absolute;
 	width: 338px;
 	height: 95px;
-	left: 90px;
+	left: 15px;
 	top: 310px;
+	text-transform: uppercase;
 	display: inline-block;
     border: none;
     padding: 0;

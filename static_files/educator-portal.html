@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Main educator portal, see assigned exhibits in list and map form -->
+<!-- 
+	Directed here after making their plan. They can see their plan as well as a visualization
+	of how many exhibits they assigned based on date.
+ -->
 <head>
 	<title>Art Museum Portal | Educator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +13,19 @@
 	<script src="jquery-3.3.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	<script type="text/javascript">
 
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script type="text/javascript">
+	
 	const apikey = '3626f450-6473-11e9-a8d2-cd4f8edc6e52';
+	let pre19 = 0;
+	let nineteen = 0;
+	let none = 0;
 
 	// jQuery convention for running when the document has been fully loaded:
 	$(document).ready(() => {
+		//General login checking
 		console.log('page ready');
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
@@ -36,6 +46,7 @@
 	    $('#status').html('Error: unknown ajaxError!');
 	  });
 
+	  //Get the plan
 	  $.ajax({
 		url: 'plans/' + window.localStorage.getItem('username'), 
 		type: 'GET',
@@ -47,6 +58,7 @@
 	  
 	});
 
+	//Display the plans
 	function display(plans) {
 		let artist = 'Unavailable';
 		plans.forEach((e) => {
@@ -54,32 +66,82 @@
 			url: 'https://api.harvardartmuseums.org/object/' + e + '?apikey=' + apikey,
 			type: 'GET',
 			dataType: 'json',
+			async: false,
 			success: (data) => {
 				if(data.people) {
-				artist = data.people[0].name;
-			}
-			$('#assignment').append(
-				`<div class="exhibit-entry">
-				<h4>`+ data.title +`</h4>
-				<p>`+ artist +`</p>
-				<p>`+ data.dated +`</p>
-				</div><br>`)
+					artist = data.people[0].name;
+				}
+				if(data.dated) {
+					let time = data.dated.substring(0, 2);
+					if(time === "19") {
+						nineteen += 1;
+					}
+					else {
+						pre19 += 1;
+					}
+				}
+				else {
+					none += 1;
+				}
+				$('#assignment').append(
+					`<div class="exhibit-entry">
+					<h4>`+ data.title +`</h4>
+					<p>`+ artist +`</p>
+					<p>`+ data.dated +`</p>
+					</div><br>`);
+				
 			},
 			});
 		});
 	}
+
+	//Erases the plan from the database and boots them back to the planning screen
+	function deletePlan() {
+		$.ajax({
+            url: 'plans/' + window.localStorage.getItem('username'),
+            type: 'POST',
+            data: {
+              name: window.localStorage.getItem('username'),
+            }
+		  });
+		window.location.href="educatorplan.html";
+	}
+
+		//Google Charts
+		google.charts.load("current", {packages:["corechart"]});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart(dated) {
+			var data = google.visualization.arrayToDataTable([
+			['Task', 'Hours per Day'],
+			['Pre-19th Century', pre19],
+			['19th-20th Century', nineteen],
+			['Not-Dated', none]
+			]);
+
+			var options = {
+			title: 'Dates of Exhibits',
+			pieHole: 0.4,
+			};
+
+			var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+			chart.draw(data, options);
+		}
+		//end of Charts
+
 	</script>
 </head>
 
 <body>
 <div id="status">current user</div>
 <button id = "logOutButton" class="btn btn-primary">Log out</button>
+
 <div class="rectangleheader">
 <h1 class="title2">Assigned Exhibits</h1>
 </div>
-
+<div id="donutchart" style="width: 400px; height: 300px;"></div>
 <!-- <a href="educatorplan.html">Edit plan</a> -->
 <br><a href="shareplan.html">Share code</a>
+<button class="btn btn-link" onClick=deletePlan()>Delete plan</button>
 
 <div class="listview" id="assignment">
 

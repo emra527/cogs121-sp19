@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<!-- Educator screen 3, share plan with students -->
+<!--
+This screen belongs to the student who has completed their assignment. When done,
+it prompts them to let their educator know, and then sign out of their assignment.
+-->
 <head>
 	<title>Art Museum Portal | Educator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +14,7 @@
 	<script src="jquery-3.3.1.min.js"></script>
 	<script>
 		$(document).ready(() => {
-
+			// LogOut Function
 			$('#finish-button').click(() => {
 				localStorage.clear();
 				window.location.href = "home.html";
