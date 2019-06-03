@@ -50,8 +50,9 @@
    function datahandling(data)  {
     if (data.records) {
           $('#featuredlist').empty();
-          $('#featuredlist').append('<h4>Results Found: ' + data.info.totalrecords + '</h4>');
+          $('#featuredlist').append('<h6>Results Found: ' + data.info.totalrecords + '</h6>');
           $('#featuredlist').append('<h6>Page: ' + data.info.page + '</h6>');
+          console.log(data.verificationlevel);
           let titles = new Array();
           let id = new Array();
           let artists = new Array();
@@ -75,7 +76,7 @@
                 <input class="form-check-input" type="checkbox" onClick=checkmarked("` + url + `","` + id[x] + `") value="" id="` + id[x] + `">
                   <label class="form-check-label" for="` + x + `">"` + titles[x] + `" (` + years[x] + `)</label><br>
                   <label style="font-size: 10px">Created by: ` + artists[x] + `</label>
-                  <button type="button" class="btn btn-link" style = "font-size: 10px;" data-toggle="modal" data-target="#modal" onclick=moreData("` + url + `")>More Info...</button></div>`
+                  <button type="button" class="btn btn-link info-button" style = "font-size: 10px;" data-toggle="modal" data-target="#modal" onclick=moreData("` + url + `")>More Info...</button></div>`
             );
           }
           //If there is a next/prev page of results, prepare for it and show/hide the buttons
@@ -269,7 +270,7 @@
           <div class="modal-body" id="modalBody">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" id="closebutton" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
