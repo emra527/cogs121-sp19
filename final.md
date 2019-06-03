@@ -2,17 +2,42 @@
 ## Team name
 Band of the Hawk
 ## Team members
-Eddy Ambing  
-*
-Tianyu Ma  
-*
-Kenny Cheng 
-*
-Andrew Auh  
-*
+Eddy Ambing
+- Contributions
+
+Tianyu Ma
+- Contributions
+
+Kenny Cheng
+- Created storyboard and digital prototype
+- Worked on the app's interface and frontend details, including styling and branding/logo design
+- Contributed to project write-ups, demo video, and Google slide
+
+Andrew Auh
+- Contributions  
 
 ## Source Code Files  
-* `server.js`: fdsfds
+***Javascript***  
+>* `server.js`: Performs data handling, including account management.
+  
+***HTML***
+>* `home.html`: Landing page, contains sign-up and log-in.
+>* `register.html`: Choose a portal depending on your role (student or educator).
+>* `educatorplan.html`: Perform search within collection and add objects to your plan.
+>* `generatepath.html`: Displays items added to plan 
+>* `sharepath.html`: Develops a unique code that can be shared to access the associated plan.
+>* `educator-portal.html`: Review or delete a plan
+>* `joinclass.html`: Input code to access your class' plan
+>* `student-portal.html`: View objects assigned by teacher and mark as finished 
+>* `completion.html`: When complete, displays confirmation message.
+  
+***CSS***
+>* `home.css`: Majority of styling throughout app is found here.
+>* `joinclass.css`: Styles the join class page
+>* `pages.css`: Styles the code pages
+>* `shareplan.css`: Styles the shareplan page
 
+## Google Slide   
+https://docs.google.com/presentation/d/1ZCxfUs61xtegXFhziYctYn09zacbk2tQaLXOMIf_zig/edit?usp=sharing
 
-## Google Slide Presentation  
+## Demo Video  
