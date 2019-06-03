@@ -1,14 +1,33 @@
 /* home/login */
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  background-color:#f3fffe;
 }
 
 .title{
 	text-align: center;
 	font-size:40px;
 	font-weight:800;
-	padding-top:150px;
+	color:#18a49a;
+	font-family: 'Montserrat', sans-serif; 
+	letter-spacing:3px;
+	text-transform: uppercase;
+}
+.btn{
+	color:#f3fffe;
+	background-color:#18a49a;
+	border-color:#18a49a;
+	box-shadow: 0 3px #008074;
+	margin-bottom:10px;
+}
+
+.btn:hover {background-color: #3e8e41}
+
+.btn:active {
+  background-color: #18a49a;
+  box-shadow: 0 5px #008074;
+  transform: translateY(4px);
 }
 
 .login{
@@ -28,6 +47,14 @@ body {
 	display:block;
 }
 
+#logo1{
+	width:150px;
+	height:150px;
+	margin-top:100px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
 
 /* registration */
 .title2{
@@ -87,23 +114,27 @@ float:left;
 }
 
 .exhibit-checks{
-	background-color: #e4f1fe;
-	border-style:solid;
-	border-width:1px;
-	padding:20px 20px 20px 40px;
-	border-radius:5px;
-	margin-top:10px;
-	border-color:#336e7b;
-}
-
-
-.exhibit-entry{
-	background-color: #e4f1fe;
+	background-color: #ffffff;
 	border-style:solid;
 	border-width:2px;
 	padding:20px 20px 20px 40px;
 	border-radius:5px;
-	border-color:#336e7b;
+	margin-top:10px;
+	border-color:#ffffff;
+	color:#336e7b;
+	box-shadow: 0 2px #87d0cd;
+}
+
+.exhibit-entry{
+	background-color: #ffffff;
+	border-style:solid;
+	border-width:2px;
+	padding:20px 20px 20px 40px;
+	border-radius:5px;
+	margin-top:10px;
+	border-color:#ffffff;
+	color:#336e7b;
+	box-shadow: 0 2px #87d0cd;
 }
 
 .listmap{
@@ -132,7 +163,7 @@ float:left;
 .rectangleheader {
     width: 414px;
     height: 127px;
-    background: #C4C4C4;
+    background: #336e7b;
 }
 
 .rectangleheader h1 {
@@ -149,4 +180,5 @@ float:left;
 	position:absolute;
 	right:0;
 }
+
 
