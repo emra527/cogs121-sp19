@@ -50,4 +50,4 @@ Andrew Auh
 https://docs.google.com/presentation/d/1ZCxfUs61xtegXFhziYctYn09zacbk2tQaLXOMIf_zig/edit?usp=sharing
 
 ## Demo Video  
-https://drive.google.com/file/d/1TmDy30xE1WRXQnt2KocnYMHbapaP7uTz/view?usp=sharing 
+https://drive.google.com/file/d/12pD5_a0gIKoNc7qSt8gjT-IQal00sqMB/view
