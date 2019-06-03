@@ -14,7 +14,13 @@ Kenny Cheng
 - Contributed to project write-ups, demo video, and Google slide
 
 Andrew Auh
-- Contributions  
+- Helped in the initial concept of the app
+- Contributed to the understanding and use of the Harvard Art Museum API
+- Created most of the API related functionality
+    - Search function for keywords
+    - Plan creating
+    - Code sharing
+    - Data visualization
 
 ## Source Code Files  
 ***Javascript***  
