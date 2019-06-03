@@ -3,14 +3,17 @@
 Band of the Hawk
 ## Team members
 Eddy Ambing
-- Contributions
+- Created initial storyboard
+- Worked on setting up backend server
 
 Tianyu Ma
-- Contributions
+- Created initial digital prototype
+- Set up backend server for sign-up/log-in
+- Worked on account management using local storage
 
 Kenny Cheng
 - Created storyboard and digital prototype
-- Worked on the app's interface and frontend details, including styling and branding/logo design
+- Worked on the app's interface and frontend code, including styling, branding/logo design, and UI skeletons
 - Contributed to project write-ups, demo video, and Google slide
 
 Andrew Auh
@@ -38,7 +41,7 @@ Andrew Auh
 >* `completion.html`: When complete, displays confirmation message.
   
 ***CSS***
->* `home.css`: Majority of styling throughout app is found here.
+>* `home.css`: Provides majority of styling for app
 >* `joinclass.css`: Styles the join class page
 >* `pages.css`: Styles the code pages
 >* `shareplan.css`: Styles the shareplan page
@@ -47,3 +50,4 @@ Andrew Auh
 https://docs.google.com/presentation/d/1ZCxfUs61xtegXFhziYctYn09zacbk2tQaLXOMIf_zig/edit?usp=sharing
 
 ## Demo Video  
+https://drive.google.com/file/d/1TmDy30xE1WRXQnt2KocnYMHbapaP7uTz/view?usp=sharing 
