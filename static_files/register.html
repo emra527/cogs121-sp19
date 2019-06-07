@@ -19,7 +19,7 @@
 		console.log('page ready');
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
-			window.location.href="home_withBackend.html";
+			window.location.href="index.html";
 		}
 		//const testname = window.localStorage.getItem('username');
 		//console.log(testname);
@@ -64,7 +64,7 @@
 		//Logout handling, clearing localstorage
 		$('#logOutButton').click((event) => {
 			window.localStorage.clear();
-			window.location.href="home_withBackend.html";
+			window.location.href="index.html";
 		});
 
 

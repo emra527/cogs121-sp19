@@ -27,13 +27,13 @@
     //General login checking
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
-			window.location.href="home.html";
+			window.location.href="index.html";
 		}
 		const tempuser = window.localStorage.getItem('username');;
 		$('#status').html('You have logged in as '+ tempuser);
 		$('#logOutButton').click((event) => {
 			window.localStorage.clear();
-			window.location.href="home.html";
+			window.location.href="index.html";
     });
     
     document.getElementById('nextbutton').setAttribute('onClick', 'nextPage("' + tempuser + '")')
@@ -43,7 +43,7 @@
 
     if(window.localStorage.getItem('logInStatus')){
     }else{
-     window.location.href="home.html";
+     window.location.href="index.html";
    }
 
    //Gets the data from the search results, and displays them neatly in the page.
@@ -166,10 +166,19 @@
               }
               console.log(data);
               document.getElementById("modalTitle").innerHTML = "Title: " + data.title;
-              document.getElementById("modalBody").innerHTML = 
-              `<center><img src =` + data.images[0].baseimageurl + `?height=200&width=200></center><hr>
-              <p>Artist: ` + artist + `<br>
-              Created in: ` + data.dated + `</p>`;
+              if(data.images.length != 0) {
+                document.getElementById("modalBody").innerHTML = 
+                `<center><img src =` + data.images[0].baseimageurl + `?height=200&width=200></center><hr>
+                <p>Artist: ` + artist + `<br>
+                Created in: ` + data.dated + `</p>`;
+              }
+              else {
+                document.getElementById("modalBody").innerHTML = 
+                `<center><p>Image Not Available</p></center><hr>
+                <p>Artist: ` + artist + `<br>
+                Created in: ` + data.dated + `</p>`;      
+              }
+
             },
           });
       }

@@ -20,13 +20,13 @@
 		console.log('page ready');
 		if(window.localStorage.getItem('logInStatus')){
 		}else{
-			window.location.href="home.html";
+			window.location.href="index.html";
 		}
 		const tempuser = window.localStorage.getItem('username');;
 		$('#status').html('You have logged in as '+ tempuser);
 		$('#logOutButton').click((event) => {
 			window.localStorage.clear();
-			window.location.href="home.html";
+			window.location.href="index.html";
 		});
 
 		//Get the plan
